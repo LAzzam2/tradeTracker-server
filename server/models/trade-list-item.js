@@ -16,6 +16,7 @@ var TradelistItemSchema = new Schema({
 	user: String,
 	name: String,
 	actions: Array,
+	direction: String,
 	tradeValue: String
 });
 
@@ -61,7 +62,8 @@ TradelistItemSchema.statics = {
 
 		newTradelistItem.user = user;
 		newTradelistItem.name = itemName;
-		newTradelistItem.actions = [{ direction: '1', price: '', quantity: ''}];
+		newTradelistItem.actions = [{ date: '', direction: '1', price: '', quantity: ''}];
+		newTradelistItem.direction = '';
 		newTradelistItem.tradeValue = '0';
 
 		return saveWithPromise(newTradelistItem);
