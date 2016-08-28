@@ -156,10 +156,11 @@ module.exports = function(app) {
 		var tradelistItemId    = tradelistItem._id;
 		var tradelistItemActions = tradelistItem.actions;
 		var tradelistItemDirection = tradelistItem.direction;
+		var tradelistItemCount = tradelistItem.count;
 		var tradelistItemTradeValue = tradelistItem.tradeValue;
 		console.log('server req: ',tradelistItemActions)
 
-		tradelist.upsertTradelistItem(userId, tradelistItem, tradelistItemValue, tradelistItemId, tradelistItemActions, tradelistItemTradeValue, tradelistItemDirection)
+		tradelist.upsertTradelistItem(userId, tradelistItem, tradelistItemValue, tradelistItemId, tradelistItemActions, tradelistItemDirection, tradelistItemCount, tradelistItemTradeValue)
 		.then( function(updatedTradelistItem) {
 			res.status(200).send(updatedTradelistItem);
 		} )

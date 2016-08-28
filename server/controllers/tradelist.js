@@ -46,7 +46,7 @@ var createNewTradelistItem = function(userId, tradelistItem)
 	});
 };
 
-var updateTradelistItem = function(tradelistItemId, tradelistItemValue, tradelistItemActions, tradeValue, direction) {
+var updateTradelistItem = function(tradelistItemId, tradelistItemValue, tradelistItemActions, tradeDirection, tradeCount, tradeValue) {
 
 	return new Promise( function(resolve, reject) {
 		TradelistItems.findOneAndUpdate({
@@ -56,7 +56,8 @@ var updateTradelistItem = function(tradelistItemId, tradelistItemValue, tradelis
 			$set: {
 				name: tradelistItemValue,
 				actions: tradelistItemActions,
-				direction: direction,
+				direction: tradeDirection,
+				count: tradeCount,
 				tradeValue: tradeValue
 			}
 		},
@@ -81,12 +82,12 @@ var updateTradelistItem = function(tradelistItemId, tradelistItemValue, tradelis
 	});
 };
 
-exports.upsertTradelistItem = function(userId, tradelistItem, tradelistItemValue, tradelistItemId, tradelistItemActions, tradelistItemTradeValue, tradelistItemDirection) {
+exports.upsertTradelistItem = function(userId, tradelistItem, tradelistItemValue, tradelistItemId, tradelistItemActions, tradelistItemDirection, tradelistItemCount, tradelistItemTradeValue) {
 	console.log( 'routes 2: ', tradelistItemActions )
 	return new Promise(function( resolve, reject) {
 		if(tradelistItemId) {
 			// Update an existing list item.
-			updateTradelistItem(tradelistItemId, tradelistItemValue, tradelistItemActions, tradelistItemTradeValue, tradelistItemDirection)
+			updateTradelistItem(tradelistItemId, tradelistItemValue, tradelistItemActions, tradelistItemDirection, tradelistItemCount, tradelistItemTradeValue)
 			.then( function(updatedTradelistItem) {
 				resolve(updatedTradelistItem);
 			})
