@@ -144,3 +144,18 @@ exports.getTradelist = function(userId) {
 		});
 	});
 };
+
+exports.getCommunityTradelist = function(userId) {
+	return new Promise(function(resolve, reject) {
+		TradelistItems.find({
+		},
+		function(error, tradelistItems) {
+			if(error) {
+				console.log(error);
+				reject(error);
+			}
+
+			resolve(tradelistItems);
+		});
+	});
+};

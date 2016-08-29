@@ -192,5 +192,17 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/api/community/tradelist', authRequired, function(req, res, next) {
+		var userId = req.user._id;
+
+		tradelist.getCommunityTradelist(userId)
+		.then( function(tradelistItems) {
+			res.status(200).send({ 'tradelistItems': tradelistItems });
+		})
+		.catch( function(error) {
+			res.status(500).send({ 'message': error });
+		});
+	});
+
 	console.log('Routes successfully loaded.');
 };
