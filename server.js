@@ -10,6 +10,7 @@ require('./serverSetup.js')().then(function(app) {
 
 	server.on('listening', function() {
 		console.log('yes, server listening 9000');
+		var tk = require('./server/controllers/tk-api');
 	});
 
 	server.listen(9000);
